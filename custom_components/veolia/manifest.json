@@ -11,6 +11,6 @@
     "@tetienne"
   ],
   "requirements": [
-    "pyolia==0.2.1"
+    "git+https://github.com/ghost58400/python-veolia-api.git"
   ]
 }

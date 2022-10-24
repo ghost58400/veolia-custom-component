@@ -10,5 +10,5 @@
   "codeowners": [
     "@tetienne"
   ],
-  "requirements": ["pyolia @ git+https://github.com/ghost58400/python-veolia-api.git@v0.3.3"]
+  "requirements": ["pyolia @ git+https://github.com/ghost58400/python-veolia-api.git"]
 }

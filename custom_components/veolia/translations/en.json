@@ -4,8 +4,9 @@
         "step": {
             "user": {
                 "title": "Veolia",
-                "description": "Please use your https://www.eau-services.com credentials.",
+                "description": "Please enter your credentials.",
                 "data": {
+                    "website": "Website",
                     "username": "Username",
                     "password": "Password"
                 }

@@ -4,8 +4,9 @@
         "step": {
             "user": {
                 "title": "Veolia",
-                "description": "Utiliser vos identifiants pour https://www.eau-services.com",
+                "description": "Indiquez vos identifiants",
                 "data": {
+                    "website": "Site",
                     "username": "Identifiant",
                     "password": "Mot de Passe"
                 }

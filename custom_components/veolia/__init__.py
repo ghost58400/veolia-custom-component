@@ -21,6 +21,7 @@ from .const import (
     API,
     CONF_PASSWORD,
     CONF_USERNAME,
+    CONF_WEBSITE,
     COORDINATOR,
     DAILY,
     DOMAIN,
@@ -47,9 +48,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
     username = entry.data.get(CONF_USERNAME)
     password = entry.data.get(CONF_PASSWORD)
+    website = entry.data.get(CONF_WEBSITE)
 
     session = aiohttp_client.async_create_clientsession(hass)
-    hass.data[DOMAIN][API] = VeoliaClient(username, password, session, "agence.eaudugrandlyon.com")
+    hass.data[DOMAIN][API] = VeoliaClient(username, password, session, website)
 
     async def _get_consumption():
         """Return the water consumption."""

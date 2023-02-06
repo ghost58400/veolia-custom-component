@@ -16,6 +16,7 @@ from homeassistant.helpers import aiohttp_client
 from homeassistant.helpers.typing import HomeAssistantType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from pyolia.client import VeoliaClient
+from pyolia.veolia_websites import VeoliaWebsite
 
 from .const import (
     API,
@@ -34,6 +35,9 @@ SCAN_INTERVAL = timedelta(minutes=30)
 
 
 _LOGGER = logging.getLogger(__name__)
+
+
+ALLOWED_HOURLY = [ VeoliaWebsite.EAU_SERVICES ]
 
 
 async def async_setup(hass: HomeAssistant, config: Config):
@@ -75,9 +79,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
             last_report_date.month, last_report_date.year
         )
 
-        hourly_consumption = await api.get_consumption(
-            last_report_date.month, last_report_date.year, last_report_date.day
-        )
+        if entry.data.get(CONF_WEBSITE) in ALLOWED_HOURLY:
+            hourly_consumption = await api.get_consumption(
+                last_report_date.month, last_report_date.year, last_report_date.day
+            )
+        else:
+            hourly_consumption = None
         return {
             DAILY: daily_consumption,
             HOURLY: hourly_consumption,

@@ -8,5 +8,5 @@
   "config_flow": true,
   "issue_tracker": "https://github.com/tetienne/veolia-custom-component/issues",
   "codeowners": ["@tetienne"],
-  "requirements": ["pyolia @ git+https://github.com/ghost58400/python-veolia-api.git"]
+  "requirements": ["pyolia @ git+https://github.com/ghost58400/python-veolia-api.git==0.4.3"]
 }

@@ -51,7 +51,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     website = entry.data.get(CONF_WEBSITE)
 
     session = aiohttp_client.async_create_clientsession(hass)
-    hass.data[DOMAIN][API] = VeoliaClient(username, password, session, website)
+    #hass.data[DOMAIN][API] = VeoliaClient(username, password, session, website)
+    hass.data[DOMAIN][API] = VeoliaClient(username, password, session)
 
     async def _get_consumption():
         """Return the water consumption."""

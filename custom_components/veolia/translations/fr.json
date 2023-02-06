@@ -1,17 +1,19 @@
 {
-  "title": "Veolia",
-  "config": {
-    "step": {
-      "user": {
-        "description": "Utiliser vos identifiants pour https://www.eau-services.com",
-        "data": {
-          "username": "Identifiant",
-          "password": "Mot de Passe"
+    "title": "Veolia",
+    "config": {
+        "step": {
+            "user": {
+                "title": "Veolia",
+                "description": "Indiquez vos identifiants",
+                "data": {
+                    "website": "Site",
+                    "username": "Identifiant",
+                    "password": "Mot de Passe"
+                }
+            }
+        },
+        "error": {
+            "auth": "Identifiant ou mot de passe erroné."
         }
-      }
-    },
-    "error": {
-      "auth": "Identifiant ou mot de passe erroné."
     }
-  }
 }

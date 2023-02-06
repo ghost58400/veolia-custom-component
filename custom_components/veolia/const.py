@@ -7,6 +7,7 @@ DOMAIN = "veolia"
 PLATFORMS = [SENSOR]
 CONF_USERNAME = "username"
 CONF_PASSWORD = "password"
+CONF_WEBSITE = "website"
 API = "api"
 COORDINATOR = "coordinator"
 

@@ -1,17 +1,19 @@
 {
-  "title": "Veolia",
-  "config": {
-    "step": {
-      "user": {
-        "description": "Please use your https://www.eau-services.com credentials.",
-        "data": {
-          "username": "Username",
-          "password": "Password"
+    "title": "Veolia",
+    "config": {
+        "step": {
+            "user": {
+                "title": "Veolia",
+                "description": "Please enter your credentials.",
+                "data": {
+                    "website": "Website",
+                    "username": "Username",
+                    "password": "Password"
+                }
+            }
+        },
+        "error": {
+            "auth": "Username/Password is wrong."
         }
-      }
-    },
-    "error": {
-      "auth": "Username/Password is wrong."
     }
-  }
 }

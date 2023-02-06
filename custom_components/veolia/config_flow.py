@@ -1,9 +1,11 @@
 """Adds config flow for Veolia."""
 from homeassistant import config_entries
+from homeassistant.helpers.selector import selector
 from pyolia.client import BadCredentialsException, VeoliaClient
+from pyolia.veolia_websites import VeoliaWebsite
 import voluptuous as vol
 
-from .const import CONF_PASSWORD, CONF_USERNAME, DOMAIN
+from .const import CONF_PASSWORD, CONF_USERNAME, CONF_WEBSITE, DOMAIN
 
 
 class VeoliaFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
@@ -22,7 +24,9 @@ class VeoliaFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
         if user_input is not None:
             valid = await self._test_credentials(
-                user_input[CONF_USERNAME], user_input[CONF_PASSWORD]
+                user_input[CONF_USERNAME],
+                user_input[CONF_PASSWORD],
+                user_input[CONF_WEBSITE],
             )
             if valid:
                 return self.async_create_entry(
@@ -40,15 +44,25 @@ class VeoliaFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
-                {vol.Required(CONF_USERNAME): str, vol.Required(CONF_PASSWORD): str}
+                {
+                    vol.Required(CONF_WEBSITE): selector(
+                        {
+                            "select": {
+                                "options": [member.value for member in VeoliaWebsite],
+                            }
+                        }
+                    ),
+                    vol.Required(CONF_USERNAME): str,
+                    vol.Required(CONF_PASSWORD): str,
+                }
             ),
             errors=self._errors,
         )
 
-    async def _test_credentials(self, username, password):
+    async def _test_credentials(self, username, password, website):
         """Return true if credentials is valid."""
         try:
-            client = VeoliaClient(username, password)
+            client = VeoliaClient(username, password, website=website)
             await client.login()
             return True
         except BadCredentialsException:  # pylint: disable=broad-except
